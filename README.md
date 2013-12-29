@@ -1,7 +1,7 @@
 cordova-gen-icon
 -----------------------------------------------------------------------------
-Cordova Generate Icon is a support tool for cordova application project.
-cordova-gen-icon generates the icon image files for native applications from a logo image file.
+Cordova Generate Icon is a support tool for the [Cordova][cordova] application project.
+`cordova-gen-icon` generates the icon image files for native applications from a logo image file.
 
 Supported Platforms
 
@@ -14,6 +14,16 @@ Install
 -----------------------------------------------------------------------------
 
     $ npm install cordova-gen-icon
+
+Node plugin `imagemagick` depends on [ImageMagick][imagemagick]. Please install it.
+
+On Linux(Ubuntu)
+
+    $ apt-get install imagemagick
+
+On Mac OS X(Homebrew)
+
+    $ brew install imagemagick
 
 Usage
 -----------------------------------------------------------------------------
@@ -50,4 +60,11 @@ After that, create the icon image files by `cordova-gen-icon` with platform opti
     generate iOS icons
     success generate icon set
 
+License
+-----------------------------------------------------------------------------
+Copyright 2013 Naoki Takimura under the [WTFPL][wtfpl].
+
+[cordova]: http://cordova.apache.org/ "Apache Cordova"
+[imagemagick]: http://www.imagemagick.org/ "ImageMagick"
+[wtfpl]: http://www.wtfpl.net/about/ "WTFPL"
 
