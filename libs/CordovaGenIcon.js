@@ -75,7 +75,7 @@ CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, 
   }, function(err) {
     var i, dest;
     if (err === null || err === undefined) {
-      console.log("Insert 'icons' filed into '" + platforms + "/firefoxos/www/manifest.web'.");
+      console.log("Insert 'icons' field into '" + platforms + "/firefoxos/www/manifest.web'.");
       console.log();
       console.log("\"icons:\": {");
       for (i in dests) {
