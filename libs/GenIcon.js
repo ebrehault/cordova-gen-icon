@@ -43,7 +43,7 @@ GenIcon.prototype.generate = function(clbk) {
         }
 
         var target = targets.shift();
-        if (target === null || typeof target === undefined) {
+        if (target === null || target === undefined) {
           return clbk();
         }
 
