@@ -18,7 +18,7 @@ Usage
 
 Command
 
-    % cordova-gen-icon [options]
+    $ cordova-gen-icon [options]
 
 Options
 
@@ -31,14 +31,15 @@ Options
 * -i, --ios             Generate iOS icons
 
 Example
+-----------------------------------------------------------------------------
 
-    % cordova create helloworld
+    $ cordova create helloworld
     Creating a new cordova project with name "HelloCordova" and id "io.cordova.hellocordova" at location "helloworld"
-    % cd helloworld 
-    % cordova platform add ios
+    $ cd helloworld 
+    $ cordova platform add ios
     Creating ios project...
     Preparing ios project
-    % cordova-gen-icon -i
+    $ cordova-gen-icon -i
     generate iOS icons
     success generate icon set
 
