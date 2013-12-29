@@ -24,13 +24,11 @@ function CordovaGenIcon(options) {
     this.target.push("amazonfireos");
   }
 
-  if (this.verbose) {
-    console.log("generate cordova icons with");
-    console.log("project: " + this.project);
-    console.log("icon   : " + this.icon);
-    console.log("target : " + this.target);
-    console.log();
-  }
+  console.log("Generate cordova icons with");
+  console.log("project: " + this.project);
+  console.log("icon   : " + this.icon);
+  console.log("target : " + this.target);
+  console.log();
 
 }
 util.inherits(CordovaGenIcon, genicon.GenIcon);
