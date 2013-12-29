@@ -52,7 +52,6 @@ PhoneGapGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk)
     console.log(name);
   }
 
-  var self = this;
   var dests = [{
       dest: platforms + "/ios/" + name + "/Resources/icons/icon.png",
       width: 57, height: 57
@@ -97,12 +96,11 @@ PhoneGapGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk)
       width: 58, height: 58
   }];
 
-  self.resize(src, dests, clbk);
+  this.resize(src, dests, clbk);
 };
 
 PhoneGapGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
   console.log("generate android icons");
-  var self = this;
   var dests = [{
       dest: platforms + "/android/res/drawable/icon.png",
       width: 96, height: 96
@@ -120,7 +118,7 @@ PhoneGapGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
       width: 96, height: 96
   }];
 
-  self.resize(src, dests, clbk);
+  this.resize(src, dests, clbk);
 };
 
 // vim: ts=2 sw=2

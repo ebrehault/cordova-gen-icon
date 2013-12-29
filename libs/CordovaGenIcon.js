@@ -73,15 +73,16 @@ CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, 
   this.resize(src, dests, {
     circle: true
   }, function(err) {
+    var i, dest;
     if (err === null || err === undefined) {
       console.log("Insert 'icons' filed into '" + platforms + "/firefoxos/www/manifest.web'.");
       console.log();
       console.log("\"icons:\": {");
-      for (var i in dests) {
-        var dest = dests[i];
+      for (i in dests) {
+        dest = dests[i];
         console.log("  \"" + dest.width + "\": " +
             dest.dest.replace(platforms + "/firefoxos/www", "") +
-            ((i == dests.length - 1) ? "" : ","));
+            ((i === dests.length - 1) ? "" : ","));
       }
       console.log("}");
       console.log();
@@ -96,7 +97,6 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
     console.log(name);
   }
 
-  var self = this;
   var dests = [{
       dest: platforms + "/ios/" + name + "/Resources/icons/icon.png",
       width: 57, height: 57
@@ -141,12 +141,11 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
       width: 58, height: 58
   }];
 
-  self.resize(src, dests, clbk);
+  this.resize(src, dests, clbk);
 };
 
 CordovaGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
   console.log("generate android icons");
-  var self = this;
   var dests = [{
       dest: platforms + "/android/res/drawable/icon.png",
       width: 96, height: 96
@@ -164,7 +163,7 @@ CordovaGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
       width: 96, height: 96
   }];
 
-  self.resize(src, dests, clbk);
+  this.resize(src, dests, clbk);
 };
 
 // vim: ts=2 sw=2

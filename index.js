@@ -8,7 +8,7 @@ function generate(options, clbk) {
 
   var generator = new genicon.CordovaGenIcon(options);
   generator.generate(function(err) {
-    if (typeof clbk === 'function') {
+    if (typeof clbk === "function") {
       clbk(err);
     }
   });

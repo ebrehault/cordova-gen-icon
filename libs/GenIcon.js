@@ -10,32 +10,42 @@ exports.GenIcon = GenIcon;
 
 GenIcon.prototype.generate = function(clbk) {
   var self = this,
+      src,
+      platforms,
       targets = self.target;
 
   if (clbk === undefined) {
     clbk = function(){};
   }
 
-  var src = (self.icon) ? self.icon : self.project + "/www/" + icon,
-      platforms = self.project + "/platforms";
+  src = (self.icon) ? self.icon : self.project + "/www/img/logo.png";
+  platforms = self.project + "/platforms";
 
   fs.readFile(self.project + "/www/config.xml", function(err, data) {
-    if (err) return clbk(err);
+    if (err) {
+      return clbk(err);
+    }
     (new domjs.DomJS()).parse(data.toString(), function(err, dom) {
-      if (err) return clbk(err);
+      if (err) {
+        return clbk(err);
+      }
 
-      var name;
-      for (var i in dom.children) {
+      var name, i;
+      for (i in dom.children) {
         if (dom.children[i].name === "name") {
           name = dom.children[i].children[0].text;
         }
       }
 
       (function _generate(err){
-        if (err) return clbk(err);
+        if (err) {
+          return clbk(err);
+        }
 
         var target = targets.shift();
-        if (target === null || typeof target == 'undefined') return clbk();
+        if (target === null || typeof target === undefined) {
+          return clbk();
+        }
 
         fs.exists(platforms + "/" + target, function(exists) {
           if (exists) {
@@ -118,18 +128,22 @@ GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
 };
 
 GenIcon.prototype.resize = function(src, dests, options, clbk) {
-  var self = this;
+  var self = this,
       targets = [].concat(dests);
 
   if (clbk === undefined) {
     clbk = options;
-    opitons = undefined;
+    options = undefined;
   }
 
   (function _resize(err) {
-    if (err) return clbk(err);
+    if (err) {
+      return clbk(err);
+    }
     var target = targets.shift();
-    if (target === null || target === undefined) return clbk(err);
+    if (target === null || target === undefined) {
+      return clbk(err);
+    }
 
     self.convert(src, target.dest, target.width, target.height, options, function(err) {
       _resize(err);
@@ -142,7 +156,9 @@ GenIcon.prototype.mkdir = function(dir, clbk) {
   fs.exists(path.dirname(dir), function(exists) {
     if (!exists) {
       self.mkdir(path.dirname(dir), function(err) {
-        if (err) return clbk(err);
+        if (err) {
+          return clbk(err);
+        }
         self.mkdir(dir, function(err) {
           clbk(err);
         });

@@ -7,13 +7,13 @@ var program = require("commander"),
 // commander options
 program
   .version(pkgjson.version)
-  .option('-v, --verbose', "verbose actions")
-  .option('-a, --android', "generate android icons")
-  .option('-i, --ios', "generate iOS icons")
-  .option('-f, --firefoxos', "generate Firefox OS icons")
-  .option('-z, --amazonfireos', "generate Amazon Fire OS icons")
-  .option('-p, --project [path]', 'Cordova(PhoneGap) project path')
-  .option('-s, --source [path]', 'original icon file path')
+  .option("-v, --verbose", "verbose actions")
+  .option("-a, --android", "generate android icons")
+  .option("-i, --ios", "generate iOS icons")
+  .option("-f, --firefoxos", "generate Firefox OS icons")
+  .option("-z, --amazonfireos", "generate Amazon Fire OS icons")
+  .option("-p, --project [path]", "Cordova(PhoneGap) project path")
+  .option("-s, --source [path]", "original icon file path")
   .parse(process.argv);
 
 // generate icons
