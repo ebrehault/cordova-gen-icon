@@ -21,7 +21,7 @@ function CordovaGenIcon(options) {
     this.target.push("firefoxos");
   }
   if (options && options.amazonfireos === true) {
-    this.target.push("amazonfireos");
+    this.target.push("amazon-fireos");
   }
 
   console.log("Generate cordova icons with");
@@ -34,9 +34,26 @@ function CordovaGenIcon(options) {
 util.inherits(CordovaGenIcon, genicon.GenIcon);
 exports.CordovaGenIcon = CordovaGenIcon;
 
-CordovaGenIcon.prototype.generateAmazonFireOSIcon = function(clbk) {
-  console.log("generate AmazonFire OS icons");
-  clbk();
+CordovaGenIcon.prototype.generateAmazonFireOSIcon = function(name, src, platforms, clbk) {
+  console.log("generate Amazon Fire OS icons");
+  var dests = [{
+      dest: platforms + "/amazon-fireos/res/drawable/icon.png",
+      width: 96, height: 96
+  }, {
+      dest: platforms + "/amazon-fireos/res/drawable-ldpi/icon.png",
+      width: 48, height: 48
+  }, {
+      dest: platforms + "/amazon-fireos/res/drawable-mdpi/icon.png",
+      width: 48, height: 48
+  }, {
+      dest: platforms + "/amazon-fireos/res/drawable-hdpi/icon.png",
+      width: 72, height: 72
+  }, {
+      dest: platforms + "/amazon-fireos/res/drawable-xhdpi/icon.png",
+      width: 96, height: 96
+  }];
+
+  this.resize(src, dests, clbk);
 };
 
 CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, clbk) {
@@ -53,7 +70,9 @@ CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, 
       width: 128, height: 128
   }];
 
-  this.resize(src, dests, function(err) {
+  this.resize(src, dests, {
+    circle: true
+  }, function(err) {
     if (err === null || err === undefined) {
       console.log("Insert 'icons' filed into '" + platforms + "/firefoxos/www/manifest.web'.");
       console.log();
@@ -132,7 +151,7 @@ CordovaGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
       dest: platforms + "/android/res/drawable/icon.png",
       width: 96, height: 96
   }, {
-      dest: platforms + "/android/res/drawable-mdpi/icon.png",
+      dest: platforms + "/android/res/drawable-ldpi/icon.png",
       width: 48, height: 48
   }, {
       dest: platforms + "/android/res/drawable-mdpi/icon.png",

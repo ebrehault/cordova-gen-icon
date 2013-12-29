@@ -10,6 +10,7 @@ program
   .option('-v, --verbose', "verbose actions")
   .option('-a, --android', "generate android icons")
   .option('-i, --ios', "generate iOS icons")
+  .option('-z, --amazonfireos', "generate Amazon Fire OS icons")
   .option('-f, --firefoxos', "generate FirefoxOS icons")
   .option('-p, --project [path]', 'Cordova(PhoneGap) project path')
   .option('-s, --source [path]', 'original icon file path')
@@ -21,6 +22,7 @@ genicon.generate({
   icon: program.source,
   verbose: program.verbose,
   android: program.android,
+  amazonfireos: program.amazonfireos,
   firefoxos: program.firefoxos,
   ios: program.ios
 }, function(err) {

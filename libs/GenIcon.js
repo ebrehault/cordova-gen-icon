@@ -47,6 +47,10 @@ GenIcon.prototype.generate = function(clbk) {
               self.generateIOSIcon(name, src, platforms, function(err) {
                 _generate(err);
               });
+            } else if (target === "amazon-fireos") {
+              self.generateAmazonFireOSIcon(name, src, platforms, function(err) {
+                _generate(err);
+              });
             } else if (target === "firefoxos") {
               self.generateFirefoxOSIcon(name, src, platforms, function(err) {
                 _generate(err);
@@ -64,7 +68,7 @@ GenIcon.prototype.generate = function(clbk) {
 
 };
 
-GenIcon.prototype.convert = function(src, dest, width, height, clbk) {
+GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
   if (this.verbose) {
     console.log("resize");
     console.log("from  : " + src);
@@ -72,6 +76,11 @@ GenIcon.prototype.convert = function(src, dest, width, height, clbk) {
     console.log("width : " + width);
     console.log("height: " + height);
     console.log();
+  }
+
+  if (clbk === undefined) {
+    clbk = options;
+    options = {};
   }
 
   var dir = path.dirname(dest);
@@ -83,35 +92,46 @@ GenIcon.prototype.convert = function(src, dest, width, height, clbk) {
       srcPath: src,
       dstPath: dest,
       width: width,
-      height: height + "^",
+      height: height + "!",
     }, function(err) {
       if (err) {
         clbk(err);
       }
-      imagemagick.convert([
-        "-size", width + "x" + height,
-        "xc:none",
-        "-fill", dest,
-        "-draw",
-        "circle " + (width / 2) + "," + (width / 2) + " " + (width / 2) + ",1",
-        dest
-      ], function(err) {
+
+      if (options && options.circle === true) {
+        imagemagick.convert([
+          "-size", width + "x" + height,
+          "xc:none",
+          "-fill", dest,
+          "-draw",
+          "circle " + (width / 2) + "," + (width / 2) + " " + (width / 2) + ",1",
+          dest
+        ], function(err) {
+          clbk(err);
+        });
+      } else {
         clbk(err);
-      });
+      }
     });
   });
 
 };
 
-GenIcon.prototype.resize = function(src, dests, clbk) {
+GenIcon.prototype.resize = function(src, dests, options, clbk) {
   var self = this;
       targets = [].concat(dests);
+
+  if (clbk === undefined) {
+    clbk = options;
+    opitons = undefined;
+  }
+
   (function _resize(err) {
     if (err) return clbk(err);
     var target = targets.shift();
     if (target === null || target === undefined) return clbk(err);
 
-    self.convert(src, target.dest, target.width, target.height, function(err) {
+    self.convert(src, target.dest, target.width, target.height, options, function(err) {
       _resize(err);
     });
   })();

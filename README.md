@@ -26,7 +26,8 @@ Options
 * -h, --help            output usage information
 * -V, --version         output the version number
 * -v, --verbose         verbose actions
-* -a, --android         generate android icons
+* -a, --android         generate Android icons
+* -z, --amazonfire      generate Amazon Fire OS icons
 * -i, --ios             generate iOS icons
 * -f, --firefoxos       generate FirefoxOS icons
 * -p, --project [path]  Cordova(PhoneGap) project path
