@@ -7,11 +7,11 @@ var program = require("commander"),
 // commander options
 program
   .version(pkgjson.version)
+  .option('-v, --verbose', "verbose actions")
+  .option('-a, --android', "generate android icons")
+  .option('-i, --ios', "generate iOS icons")
   .option('-p, --project [path]', 'Cordova(PhoneGap) project path')
   .option('-s, --source [path]', 'original icon file path')
-  .option('-v, --verbose', "Verbose actions")
-  .option('-a, --android', "Generate android icons")
-  .option('-i, --ios', "Generate iOS icons")
   .parse(process.argv);
 
 // generate icons
@@ -23,9 +23,9 @@ genicon.generate({
   ios: program.ios
 }, function(err) {
   if (err) {
-    console.log("fail generate icon set: " + err);
+    console.log("\033[31mFail\033[30m generate icon set: " + err);
   } else {
-    console.log("success generate icon set");
+    console.log("\033[32mSuccess\033[30m generate icon set");
   }
 });
 
