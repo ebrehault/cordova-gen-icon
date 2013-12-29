@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var path = require("path"),
+    genicon = require("cordova-gen-icon");
+
+var target = process.env["CORDOVA_PLATFORMS"],
+    cli = path.basename(process.env["CORDOVA_CMDLINE"].split(" ")[1]);
+
+if (cli === "cordova") {
+  genicon.generate({
+    project: process.env["PWD"],
+    android: (target === "android") ? true : false,
+    ios: (target === "ios") ? true : false
+  }, function(err) {
+    if (err) {
+      throw new Error(err);
+    }   
+  }); 
+}
+
+// vim: ts=2 sw=2 ft=javascript
+
