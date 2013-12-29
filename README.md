@@ -7,7 +7,8 @@ Supported Platforms
 
 * iOS(iPhone and iPad)
 * Android
-* FirefoxOS
+* Firefox OS
+* Amazon Fire OS
 
 Install
 -----------------------------------------------------------------------------
@@ -27,9 +28,9 @@ Options
 * -V, --version         output the version number
 * -v, --verbose         verbose actions
 * -a, --android         generate Android icons
-* -z, --amazonfire      generate Amazon Fire OS icons
 * -i, --ios             generate iOS icons
 * -f, --firefoxos       generate FirefoxOS icons
+* -z, --amazonfire      generate Amazon Fire OS icons
 * -p, --project [path]  Cordova(PhoneGap) project path
 * -s, --source [path]   original icon file path
 
