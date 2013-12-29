@@ -11,7 +11,7 @@ exports.GenIcon = GenIcon;
 GenIcon.prototype.generate = function(clbk) {
   var self = this,
       src,
-      platforms,
+      platformDir,
       targets = self.target;
 
   if (clbk === undefined) {
@@ -19,7 +19,7 @@ GenIcon.prototype.generate = function(clbk) {
   }
 
   src = (self.icon) ? self.icon : self.project + "/www/img/logo.png";
-  platforms = self.project + "/platforms";
+  platformDir = self.project + "/platforms";
 
   fs.readFile(self.project + "/www/config.xml", function(err, data) {
     if (err) {
@@ -37,41 +37,52 @@ GenIcon.prototype.generate = function(clbk) {
         }
       }
 
-      (function _generate(err){
+      fs.readdir(platformDir, function(err, platforms) {
         if (err) {
           return clbk(err);
         }
 
-        var target = targets.shift();
-        if (target === null || target === undefined) {
-          return clbk();
+        if (targets.length === 0) {
+          targets = [].concat(platforms);
         }
 
-        fs.exists(platforms + "/" + target, function(exists) {
-          if (exists) {
-            if (target === "android") {
-              self.generateAndroidIcon(src, platforms, function(err) {
-                _generate(err);
-              });
-            } else if (target === "ios") {
-              self.generateIOSIcon(name, src, platforms, function(err) {
-                _generate(err);
-              });
-            } else if (target === "amazon-fireos") {
-              self.generateAmazonFireOSIcon(name, src, platforms, function(err) {
-                _generate(err);
-              });
-            } else if (target === "firefoxos") {
-              self.generateFirefoxOSIcon(name, src, platforms, function(err) {
-                _generate(err);
-              });
-            }
-          } else {
-            console.log("platform \"" + target + "\" does not exist.");
-            _generate();
+        (function _generate(err){
+          if (err) {
+            return clbk(err);
           }
-        });
-      })();
+
+          var target = targets.shift();
+          if (target === null || target === undefined) {
+            return clbk();
+          }
+
+          fs.exists(platformDir + "/" + target, function(exists) {
+            if (exists) {
+              if (target === "android") {
+                self.generateAndroidIcon(src, platformDir, function(err) {
+                  _generate(err);
+                });
+              } else if (target === "ios") {
+                self.generateIOSIcon(name, src, platformDir, function(err) {
+                  _generate(err);
+                });
+              } else if (target === "amazon-fireos") {
+                self.generateAmazonFireOSIcon(name, src, platformDir, function(err) {
+                  _generate(err);
+                });
+              } else if (target === "firefoxos") {
+                self.generateFirefoxOSIcon(name, src, platformDir, function(err) {
+                  _generate(err);
+                });
+              }
+            } else {
+              console.log("platform \"" + target + "\" does not exist.");
+              _generate();
+            }
+          });
+        })();
+
+      });
 
     });
   });
