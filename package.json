@@ -7,7 +7,7 @@
     "cordova-gen-icon": "bin/cordova-gen-icon"
   },
   "scripts": {
-    "jshint": "./node_modules/jshint/bin/jshint index.js bin/* libs/*.js",
+    "jshint": "./node_modules/jshint/bin/jshint index.js bin/* libs/*.js tests/*.js",
     "mocha" : "./node_modules/mocha/bin/mocha -R spec tests/runner.js",
     "test": "node package.json; npm run jshint; npm run mocha"
   },

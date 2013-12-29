@@ -23,12 +23,157 @@ describe("exports", function() {
     }
   });
   it("CordovaGenIcon", function(done) {
-    if (typeof genicon.CordovaGenIcon === "function"
-        && typeof (new genicon.CordovaGenIcon) === "object") {
+    if (typeof genicon.CordovaGenIcon === "function" &&
+        typeof (new genicon.CordovaGenIcon()) === "object") {
       done();
     } else {
       done("CordovaGenIcon is not object");
     }
+  });
+});
+
+describe("cordova-gen-icon", function() {
+  var child_process = require("child_process");
+  describe("no error", function() {
+    it("-h", function(done) {
+      child_process.exec("bin/cordova-gen-icon -h", function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--help", function(done) {
+      child_process.exec("bin/cordova-gen-icon --help", function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-V", function(done) {
+      child_process.exec("bin/cordova-gen-icon -V", function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--version", function(done) {
+      child_process.exec("bin/cordova-gen-icon --version", function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-a", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon -a", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--android", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon --android", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-i", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon -i", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--ios", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon --ios", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-f", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon -f", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--firefoxos", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon --firefoxos", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-z", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon -z", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--amazonfireos", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon --amazonfireos", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-p", function(done) {
+      child_process.exec("bin/cordova-gen-icon -p tests/cordova-test",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--project", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-s", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -i -a -f -z -s tests/icon.png",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--source", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -i -a -f -z --source tests/icon.png",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+  });
+  describe("error code", function() {
+    it("-?", function(done) {
+      child_process.exec("bin/cordova-gen-icon -?", function(error, stdout, stderr) {
+        if (error === null) {
+          done("no error");
+        }
+        assert.equal(error.code, 1);
+        done();
+      });
+    });
+    it("not project", function(done) {
+      child_process.exec("bin/cordova-gen-icon", function(error, stdout, stderr) {
+        if (error === null) {
+          done("no error");
+        }
+        assert.equal(error.code, 1);
+        done();
+      });
+    });
+    it("not project, -p", function(done) {
+      child_process.exec("bin/cordova-gen-icon -p tests",
+      function(error, stdout, stderr) {
+        if (error === null) {
+          done("no error");
+        }
+        assert.equal(error.code, 1);
+        done();
+      });
+    });
+    it("not project, -v", function(done) {
+      child_process.exec("bin/cordova-gen-icon -v", function(error, stdout, stderr) {
+        if (error === null) {
+          done("no error");
+        }
+        assert.equal(error.code, 1);
+        done();
+      });
+    });
   });
 });
 
@@ -92,6 +237,48 @@ describe("CordovaGenerateIcon", function() {
       genicon.generate({
         project: "tests/cordova-test",
         ios: true,
+        verbose: true
+      }, function(err) {
+        done(err);
+      });
+    });
+  });
+
+
+  describe("firefoxos", function() {
+    it("generate standard", function(done) {
+      genicon.generate({
+        project: "tests/cordova-test",
+        firefoxos: true
+      }, function(err) {
+        done(err);
+      });
+    });
+    it("generate standard", function(done) {
+      genicon.generate({
+        project: "tests/cordova-test",
+        firefoxos: true,
+        verbose: true
+      }, function(err) {
+        done(err);
+      });
+    });
+  });
+
+
+  describe("amazonfireos", function() {
+    it("generate standard", function(done) {
+      genicon.generate({
+        project: "tests/cordova-test",
+        amazonfireos: true
+      }, function(err) {
+        done(err);
+      });
+    });
+    it("generate standard", function(done) {
+      genicon.generate({
+        project: "tests/cordova-test",
+        amazonfireos: true,
         verbose: true
       }, function(err) {
         done(err);

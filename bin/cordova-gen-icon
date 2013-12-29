@@ -28,6 +28,7 @@ genicon.generate({
 }, function(err) {
   if (err) {
     console.log("\033[31mFail\033[m generate icon set: " + err);
+    process.exit(1);
   } else {
     console.log("\033[32mSuccess\033[m generate icon set");
   }
