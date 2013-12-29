@@ -119,7 +119,18 @@ GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
         clbk(err);
       }
 
-      if (options && options.circle === true) {
+      if (options && options.roundCorner === true ) {
+        imagemagick.convert([
+          "-size", width + "x" + height,
+          "xc:none",
+          "-fill", dest,
+          "-draw",
+          "roundRectangle 0,0 " + width + "," + height + " " + (width / 6.4) + "," + (height / 6.4),
+          dest
+        ], function(err) {
+          clbk(err);
+        });
+      } else if (options && options.circle === true) {
         imagemagick.convert([
           "-size", width + "x" + height,
           "xc:none",

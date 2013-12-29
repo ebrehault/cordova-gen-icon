@@ -119,6 +119,9 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
       dest: platforms + "/ios/" + name + "/Resources/icons/icon-small.png",
       width: 29, height: 29
   }, {
+      dest: platforms + "/ios/" + name + "/Resources/icons/iTunesArtwork.png",
+      width: 512, height: 512
+  }, {
       dest: platforms + "/ios/" + name + "/Resources/icons/icon@2x.png",
       width: 114, height: 114
   }, {
@@ -139,9 +142,12 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
   }, {
       dest: platforms + "/ios/" + name + "/Resources/icons/icon-small@2x.png",
       width: 58, height: 58
+  }, {
+      dest: platforms + "/ios/" + name + "/Resources/icons/iTunesArtwork@2x.png",
+      width: 1024, height: 1024
   }];
 
-  this.resize(src, dests, clbk);
+  this.resize(src, dests, { roundCorner: true }, clbk);
 };
 
 CordovaGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
