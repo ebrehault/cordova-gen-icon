@@ -4,8 +4,8 @@ Cordova Generate Icon is a support tool for cordova application project.
 cordova-gen-icon generates the icon image files for native applications from a logo image file.
 
 Supported Platforms
-    - iOS(iPhone and iPad)
-    - Android
+* iOS(iPhone and iPad)
+* Android
 
 Install
 -----------------------------------------------------------------------------
@@ -19,13 +19,13 @@ Command
     % cordova-gen-icon [options]
 
 Options
-  -  -h, --help            output usage information
-  -  -V, --version         output the version number
-  -  -p, --project [path]  Cordova(PhoneGap) project path
-  -  -s, --source [path]   original icon file path
-  -  -v, --verbose         Verbose actions
-  -  -a, --android         Generate android icons
-  -  -i, --ios             Generate iOS icons
+* -h, --help            output usage information
+* -V, --version         output the version number
+* -p, --project [path]  Cordova(PhoneGap) project path
+* -s, --source [path]   original icon file path
+* -v, --verbose         Verbose actions
+* -a, --android         Generate android icons
+* -i, --ios             Generate iOS icons
 
 Example
     % cordova create helloworld
