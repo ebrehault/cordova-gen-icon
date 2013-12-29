@@ -48,7 +48,7 @@ Example
 -----------------------------------------------------------------------------
 At first, create your project by `cordova create [project]`,
 and install platform by `cordova platform add [platform]`.
-After that, create the icon image files by `cordova-gen-icon` with platform options.
+After that, create the icon image files by `cordova-gen-icon`.
 
     $ cordova create helloworld
     Creating a new cordova project with name "HelloCordova" and id "io.cordova.hellocordova" at location "helloworld"
@@ -56,7 +56,11 @@ After that, create the icon image files by `cordova-gen-icon` with platform opti
     $ cordova platform add ios
     Creating ios project...
     Preparing ios project
-    $ cordova-gen-icon -i
+    $ cordova-gen-icon
+    project: .
+    icon   : ./www/img/logo.png
+    target :
+    
     generate iOS icons
     success generate icon set
 
