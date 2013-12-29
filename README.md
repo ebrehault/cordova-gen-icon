@@ -7,6 +7,7 @@ Supported Platforms
 
 * iOS(iPhone and iPad)
 * Android
+* FirefoxOS
 
 Install
 -----------------------------------------------------------------------------
@@ -24,11 +25,12 @@ Options
 
 * -h, --help            output usage information
 * -V, --version         output the version number
+* -v, --verbose         verbose actions
+* -a, --android         generate android icons
+* -i, --ios             generate iOS icons
+* -f, --firefoxos       generate FirefoxOS icons
 * -p, --project [path]  Cordova(PhoneGap) project path
 * -s, --source [path]   original icon file path
-* -v, --verbose         Verbose actions
-* -a, --android         Generate android icons
-* -i, --ios             Generate iOS icons
 
 Example
 -----------------------------------------------------------------------------

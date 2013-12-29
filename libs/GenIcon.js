@@ -47,6 +47,10 @@ GenIcon.prototype.generate = function(clbk) {
               self.generateIOSIcon(name, src, platforms, function(err) {
                 _generate(err);
               });
+            } else if (target === "firefoxos") {
+              self.generateFirefoxOSIcon(name, src, platforms, function(err) {
+                _generate(err);
+              });
             }
           } else {
             console.log("platform \"" + target + "\" does not exist.");
@@ -79,16 +83,29 @@ GenIcon.prototype.convert = function(src, dest, width, height, clbk) {
       srcPath: src,
       dstPath: dest,
       width: width,
-      height: height + "!"
+      height: height + "^",
     }, function(err) {
-      clbk(err);
+      if (err) {
+        clbk(err);
+      }
+      imagemagick.convert([
+        "-size", width + "x" + height,
+        "xc:none",
+        "-fill", dest,
+        "-draw",
+        "circle " + (width / 2) + "," + (width / 2) + " " + (width / 2) + ",1",
+        dest
+      ], function(err) {
+        clbk(err);
+      });
     });
   });
 
 };
 
-GenIcon.prototype.resize = function(src, targets, clbk) {
+GenIcon.prototype.resize = function(src, dests, clbk) {
   var self = this;
+      targets = [].concat(dests);
   (function _resize(err) {
     if (err) return clbk(err);
     var target = targets.shift();

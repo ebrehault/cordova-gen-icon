@@ -39,9 +39,36 @@ CordovaGenIcon.prototype.generateAmazonFireOSIcon = function(clbk) {
   clbk();
 };
 
-CordovaGenIcon.prototype.generateFirefoxOSIcon = function(clbk) {
+CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, clbk) {
   console.log("generate Firefox OS icons");
-  clbk();
+
+  var dests = [{
+      dest: platforms + "/firefoxos/www/img/icon-30.png",
+      width: 30, height: 30
+  }, {
+      dest: platforms + "/firefoxos/www/img/icon-60.png",
+      width: 60, height: 60
+  }, {
+      dest: platforms + "/firefoxos/www/img/icon-128.png",
+      width: 128, height: 128
+  }];
+
+  this.resize(src, dests, function(err) {
+    if (err === null || err === undefined) {
+      console.log("Insert 'icons' filed into '" + platforms + "/firefoxos/www/manifest.web'.");
+      console.log();
+      console.log("\"icons:\": {");
+      for (var i in dests) {
+        var dest = dests[i];
+        console.log("  \"" + dest.width + "\": " +
+            dest.dest.replace(platforms + "/firefoxos/www", "") +
+            ((i == dests.length - 1) ? "" : ","));
+      }
+      console.log("}");
+      console.log();
+    }
+    clbk(err);
+  });
 };
 
 CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) {
