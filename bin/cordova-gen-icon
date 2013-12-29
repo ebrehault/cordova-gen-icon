@@ -10,8 +10,8 @@ program
   .option('-v, --verbose', "verbose actions")
   .option('-a, --android', "generate android icons")
   .option('-i, --ios', "generate iOS icons")
+  .option('-f, --firefoxos', "generate Firefox OS icons")
   .option('-z, --amazonfireos', "generate Amazon Fire OS icons")
-  .option('-f, --firefoxos', "generate FirefoxOS icons")
   .option('-p, --project [path]', 'Cordova(PhoneGap) project path')
   .option('-s, --source [path]', 'original icon file path')
   .parse(process.argv);
@@ -27,9 +27,9 @@ genicon.generate({
   ios: program.ios
 }, function(err) {
   if (err) {
-    console.log("\033[31mFail\033[30m generate icon set: " + err);
+    console.log("\033[31mFail\033[m generate icon set: " + err);
   } else {
-    console.log("\033[32mSuccess\033[30m generate icon set");
+    console.log("\033[32mSuccess\033[m generate icon set");
   }
 });
 
