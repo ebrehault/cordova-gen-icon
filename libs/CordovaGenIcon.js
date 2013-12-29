@@ -82,7 +82,7 @@ CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, 
         dest = dests[i];
         console.log("  \"" + dest.width + "\": " +
             dest.dest.replace(platforms + "/firefoxos/www", "") +
-            ((i === dests.length - 1) ? "" : ","));
+            ((Number(i) === dests.length - 1) ? "" : ","));
       }
       console.log("}");
       console.log();
