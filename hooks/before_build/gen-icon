@@ -11,6 +11,7 @@ if (cli === "cordova") {
     project: process.env["PWD"],
     android: (target === "android") ? true : false,
     ios: (target === "ios") ? true : false
+    firefoxos: (target === "firefoxos") ? true : false
   }, function(err) {
     if (err) {
       throw new Error(err);
