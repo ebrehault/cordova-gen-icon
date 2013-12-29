@@ -1,6 +1,6 @@
 {
   "name": "cordova-gen-icon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Apache Cordova Icon Generator",
   "main": "index.js",
   "bin": {
@@ -26,8 +26,8 @@
     "mocha": "*"
   },
   "repository": {
-    "type": "git",
-    "url": "ssh://git@bitbucket.org/ntakimura/cordova-gen-icon.git"
+    "type": "mercurial",
+    "url": "ssh://hg@bitbucket.org/ntakimura/cordova-gen-icon"
   },
   "keywords": [
     "cordova",
@@ -35,5 +35,8 @@
     "icon"
   ],
   "author": "Naoki Takimura",
-  "license": "WTFPL"
+  "license": {
+    "type": "WTFPL",
+    "url": "http://www.wtfpl.net/about/"
+  }
 }
