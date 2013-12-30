@@ -21,21 +21,15 @@ function GenIcon() {
 exports.GenIcon = GenIcon;
 
 /**
- * Generate the icon files.
+ * Prepare generating icon files.
+ *
+ * It reads www/config.xml and walk platforms/ direcotry.
+ * After that, it sets class members as generating property.
  *
  * @param {Function} clbk callback function.
  */
-GenIcon.prototype.generate = function(clbk) {
-  var self = this,
-      src,
-      platformDir,
-      targets = self.target;
-
-  if (clbk === undefined) {
-    clbk = function(){};
-  }
-
-  platformDir = self.project + "/platforms";
+GenIcon.prototype.prepare = function(clbk) {
+  var self = this;
 
   fs.readFile(self.project + "/www/config.xml", function(err, data) {
     if (err) {
@@ -46,94 +40,120 @@ GenIcon.prototype.generate = function(clbk) {
         return clbk(err);
       }
 
-      var name, i;
+      var i;
 
-      if (self.icon) {
-        src = self.icon;
-      } else {
+      if (!self.icon) {
         for (i in dom.children) {
           if (dom.children[i].name === "icon" &&
               dom.children[i].attributes["gap:platform"] === undefined) {
-            src = self.project + "/www/" + dom.children[i].attributes.src;
+            self.icon = self.project + "/www/" + dom.children[i].attributes.src;
+            break;
           }
         }
-        if (src === undefined) {
-          src = self.project + "/www/img/logo.png";
+        if (self.icon === undefined) {
+          self.icon = self.project + "/www/img/logo.png";
         }
       }
 
       for (i in dom.children) {
         if (dom.children[i].name === "name") {
-          name = dom.children[i].children[0].text;
+          self.name = dom.children[i].children[0].text;
         }
       }
+      if (self.name === undefined) {
+        return clbk("config.xml does not have \"name\" tag");
+      }
 
-      fs.readdir(platformDir, function(err, platforms) {
-        if (err) {
-          return clbk(err);
-        }
-
-        if (targets.length === 0) {
-          targets = [].concat(platforms);
-        }
-
-        if (!self.silent) {
-          console.log("Generate cordova icons with");
-          console.log("project: " + self.project);
-          console.log("icon   : " + src);
-          console.log("target : " + targets);
-        }
-
-
-        (function _generate(err){
+      if (self.targets !== undefined && self.targets.length > 0) {
+        clbk();
+      } else {
+        fs.readdir(self.project + "/platforms", function(err, platforms) {
           if (err) {
             return clbk(err);
           }
+          self.targets = [].concat(platforms);
+          clbk();
+        });
+      }
+    });
+  });
+};
 
-          var target = targets.shift();
-          if (target === null || target === undefined) {
-            return clbk();
+/**
+ * Generate the icon files.
+ *
+ * @param {Function} clbk callback function.
+ */
+GenIcon.prototype.generate = function(clbk) {
+  var self = this,
+      src,
+      platformDir;
+
+  if (clbk === undefined) {
+    clbk = function(){};
+  }
+
+  platformDir = self.project + "/platforms";
+
+  self.prepare(function(err) {
+    if (err) {
+      return clbk(err);
+    }
+
+    if (!self.silent) {
+      console.log("Generate cordova icons with");
+      console.log("project: " + self.project);
+      console.log("icon   : " + self.icon);
+      console.log("target : " + self.targets);
+    }
+
+    var targets = [].concat(self.targets);
+    (function _generate(err){
+      if (err) {
+        return clbk(err);
+      }
+
+      var target = targets.shift();
+      if (target === null || target === undefined) {
+        return clbk();
+      }
+
+      fs.exists(platformDir + "/" + target, function(exists) {
+        if (exists) {
+          if (!self.silent) {
+            console.log();
+            console.log("Generate " + target + " icon image files");
           }
 
-          fs.exists(platformDir + "/" + target, function(exists) {
-            if (exists) {
-              if (!self.silent) {
-                console.log();
-                console.log("Generate " + target + " icon image files");
-              }
-
-              if (target === "android") {
-                self.generateAndroidIcon(src, platformDir, function(err) {
-                  _generate(err);
-                });
-              } else if (target === "ios") {
-                self.generateIOSIcon(name, src, platformDir, function(err) {
-                  _generate(err);
-                });
-              } else if (target === "amazon-fireos") {
-                self.generateAmazonFireOSIcon(name, src, platformDir, function(err) {
-                  _generate(err);
-                });
-              } else if (target === "firefoxos") {
-                self.generateFirefoxOSIcon(name, src, platformDir, function(err) {
-                  _generate(err);
-                });
-              } else {
-                if (!self.silent) {
-                  console.log("Ignore " + target);
-                }
-                _generate();
-              }
-            } else {
-              console.log("platform \"" + target + "\" does not exist.");
-              _generate();
+          if (target === "android") {
+            self.generateAndroidIcon(self.name, self.icon, platformDir, function(err) {
+              _generate(err);
+            });
+          } else if (target === "ios") {
+            self.generateIOSIcon(self.name, self.icon, platformDir, function(err) {
+              _generate(err);
+            });
+          } else if (target === "amazon-fireos") {
+            self.generateAmazonFireOSIcon(self.name, self.icon, platformDir, function(err) {
+              _generate(err);
+            });
+          } else if (target === "firefoxos") {
+            self.generateFirefoxOSIcon(self.name, self.icon, platformDir, function(err) {
+              _generate(err);
+            });
+          } else {
+            if (!self.silent) {
+              console.log("Ignore " + target);
             }
-          });
-        })();
-
+            _generate();
+          }
+        } else {
+          console.log("platform \"" + target + "\" does not exist.");
+          _generate();
+        }
       });
+    })();
 
-    });
   });
 
 };

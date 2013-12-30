@@ -23,18 +23,18 @@ function CordovaGenIcon(options) {
   this.icon = (options && options.icon !== undefined) ?
       options.icon : undefined;
 
-  this.target = [];
+  this.targets = [];
   if (options && options.android === true) {
-    this.target.push("android");
+    this.targets.push("android");
   }
   if (options && options.ios === true) {
-    this.target.push("ios");
+    this.targets.push("ios");
   }
   if (options && options.firefoxos === true) {
-    this.target.push("firefoxos");
+    this.targets.push("firefoxos");
   }
   if (options && options.amazonfireos === true) {
-    this.target.push("amazon-fireos");
+    this.targets.push("amazon-fireos");
   }
 }
 util.inherits(CordovaGenIcon, genicon.GenIcon);
@@ -184,7 +184,7 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
  * @param {String} platforms platforms directory path.
  * @param {Function} clbk callback function.
  */
-CordovaGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
+CordovaGenIcon.prototype.generateAndroidIcon = function(name, src, platforms, clbk) {
   var dests = [{
       dest: platforms + "/android/res/drawable/icon.png",
       width: 96, height: 96
