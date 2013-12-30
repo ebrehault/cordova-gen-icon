@@ -14,7 +14,7 @@ var path = require("path"),
 /**
  * Generate icon super class.
  * @constructor
- * @private
+ * @abstract
  */
 function GenIcon() {
 }
@@ -306,6 +306,58 @@ GenIcon.prototype.mkdir = function(dir, clbk) {
       });
     }
   });
+};
+
+/**
+ * @summary Generate Amazon Fire OS Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ * @abstract
+ */
+GenIcon.prototype.generateAmazonFireOSIcon = function(name, src, platforms, clbk) {
+  clbk("this method must be implemented by child class.");
+};
+
+/**
+ * generateFirefoxOSIcon generates the Firefox OS icon image files.
+ * Thats images are trimed as circle automatically.
+ * @summary Generate Firefox OS Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ * @abstract
+ */
+GenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, clbk) {
+  clbk("this method must be implemented by child class.");
+};
+
+/**
+ * generateIOSIcon generates the iOS icon image files.
+ * Thats images have round corner automatically.
+ * @summary Generate iOS Icon.
+ * @param {String} name project name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ * @abstract
+ */
+GenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) {
+  clbk("this method must be implemented by child class.");
+};
+
+/**
+ * @summary Generate Android Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ * @abstract
+ */
+GenIcon.prototype.generateAndroidIcon = function(name, src, platforms, clbk) {
+  clbk("this method must be implemented by child class.");
 };
 
 // vim: ts=2 sw=2

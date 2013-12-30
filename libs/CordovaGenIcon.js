@@ -12,6 +12,7 @@ var util = require("util"),
  * @constructor
  * @summary Cordova Generate Icon.
  * @param options options
+ * @augments GenIcon
  */
 function CordovaGenIcon(options) {
   this.verbose = (options && options.verbose !== undefined && options.silent === undefined) ?
