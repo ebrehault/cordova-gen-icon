@@ -8,6 +8,7 @@ var program = require("commander"),
 program
   .version(pkgjson.version)
   .option("-v, --verbose", "verbose actions")
+  .option("-s, --silent", "silent actions")
   .option("-a, --android", "generate android icons")
   .option("-i, --ios", "generate iOS icons")
   .option("-f, --firefoxos", "generate Firefox OS icons")
@@ -20,6 +21,7 @@ program
 genicon.generate({
   project: program.project,
   icon: program.source,
+  silent: program.silent,
   verbose: program.verbose,
   android: program.android,
   amazonfireos: program.amazonfireos,

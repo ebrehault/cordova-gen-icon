@@ -75,6 +75,11 @@ GenIcon.prototype.generate = function(clbk) {
 
           fs.exists(platformDir + "/" + target, function(exists) {
             if (exists) {
+              if (!self.silent) {
+                console.log();
+                console.log("Generate " + target + " icon image files");
+              }
+
               if (target === "android") {
                 self.generateAndroidIcon(src, platformDir, function(err) {
                   _generate(err);
@@ -121,12 +126,17 @@ GenIcon.prototype.generate = function(clbk) {
  */
 GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
   if (this.verbose) {
+    console.log();
+  }
+  if (!this.silent) {
+    console.log(dest);
+  }
+  if (this.verbose) {
     console.log("resize");
     console.log("from  : " + src);
     console.log("dest  : " + dest);
     console.log("width : " + width);
     console.log("height: " + height);
-    console.log();
   }
 
   if (clbk === undefined) {
@@ -134,7 +144,8 @@ GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
     options = {};
   }
 
-  var dir = path.dirname(dest);
+  var self = this,
+      dir = path.dirname(dest);
   this.mkdir(dir, function(err) {
     if (err && err.code !== "EEXIST") {
       return clbk(err);
@@ -150,6 +161,12 @@ GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
       }
 
       if (options && options.roundCorner === true ) {
+        if (self.verbose) {
+          console.log("convert round corner image");
+          console.log("from  : " + dest);
+          console.log("dest  : " + dest);
+          console.log("round : " + (height / 6.4));
+        }
         imagemagick.convert([
           "-size", width + "x" + height,
           "xc:none",
@@ -161,6 +178,12 @@ GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
           clbk(err);
         });
       } else if (options && options.circle === true) {
+        if (self.verbose) {
+          console.log("convert circle image");
+          console.log("from  : " + dest);
+          console.log("dest  : " + dest);
+          console.log("radius: " + (width / 2));
+        }
         imagemagick.convert([
           "-size", width + "x" + height,
           "xc:none",
