@@ -6,10 +6,10 @@ Cordova Generate Icon is a support tool for the [Cordova][cordova] application p
 Supported Platforms
 
 * iOS(iPhone and iPad)
-  * the iOS icon images have round corner
+    * the iOS icon images have round corner
 * Android
 * Firefox OS
-  * the Firefox OS icon images are trimmed as circle.
+    * the Firefox OS icon images are trimmed as circle.
 * Amazon Fire OS
 
 Install
