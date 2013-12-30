@@ -6,14 +6,16 @@ Cordova Generate Icon is a support tool for the [Cordova][cordova] application p
 Supported Platforms
 
 * iOS(iPhone and iPad)
+  * the iOS icon images have round corner
 * Android
 * Firefox OS
+  * the Firefox OS icon images are trimmed as circle.
 * Amazon Fire OS
 
 Install
 -----------------------------------------------------------------------------
 
-    $ npm install cordova-gen-icon
+    $ npm install -g cordova-gen-icon
 
 Node plugin `imagemagick` depends on [ImageMagick][imagemagick]. Please install it.
 
@@ -46,23 +48,25 @@ Options
 
 Example
 -----------------------------------------------------------------------------
-At first, create your project by `cordova create [project]`,
+At first, create your project by `cordova create [project] [id]`,
 and install platform by `cordova platform add [platform]`.
 After that, create the icon image files by `cordova-gen-icon`.
 
-    $ cordova create helloworld
-    Creating a new cordova project with name "HelloCordova" and id "io.cordova.hellocordova" at location "helloworld"
-    $ cd helloworld 
+    $ cordova create hello com.example.hello
+    Creating a new cordova project with name "HelloCordova" and id "com.example.hello" at location "hello"
+    $ cd hello
     $ cordova platform add ios
     Creating ios project...
     Preparing ios project
-    $ cordova-gen-icon
+    $ cordova-gen-icon 
+    Generate cordova icons with
     project: .
     icon   : ./www/img/logo.png
-    target :
-    
+    target : 
+
     generate iOS icons
-    success generate icon set
+    Success generate icon set
+
 
 License
 -----------------------------------------------------------------------------
