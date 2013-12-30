@@ -21,7 +21,7 @@ function CordovaGenIcon(options) {
   this.project = (options && options.project !== undefined) ?
       options.project : ".";
   this.icon = (options && options.icon !== undefined) ?
-      options.icon : this.project + "/www/img/logo.png";
+      options.icon : undefined;
 
   this.target = [];
   if (options && options.android === true) {
@@ -36,15 +36,6 @@ function CordovaGenIcon(options) {
   if (options && options.amazonfireos === true) {
     this.target.push("amazon-fireos");
   }
-
-  if (!this.silent) {
-    console.log("Generate cordova icons with");
-    console.log("project: " + this.project);
-    console.log("icon   : " + this.icon);
-    console.log("target : " + this.target);
-    console.log();
-  }
-
 }
 util.inherits(CordovaGenIcon, genicon.GenIcon);
 exports.CordovaGenIcon = CordovaGenIcon;

@@ -35,7 +35,6 @@ GenIcon.prototype.generate = function(clbk) {
     clbk = function(){};
   }
 
-  src = (self.icon) ? self.icon : self.project + "/www/img/logo.png";
   platformDir = self.project + "/platforms";
 
   fs.readFile(self.project + "/www/config.xml", function(err, data) {
@@ -48,6 +47,21 @@ GenIcon.prototype.generate = function(clbk) {
       }
 
       var name, i;
+
+      if (self.icon) {
+        src = self.icon;
+      } else {
+        for (i in dom.children) {
+          if (dom.children[i].name === "icon" &&
+              dom.children[i].attributes["gap:platform"] === undefined) {
+            src = self.project + "/www/" + dom.children[i].attributes.src;
+          }
+        }
+        if (src === undefined) {
+          src = self.project + "/www/img/logo.png";
+        }
+      }
+
       for (i in dom.children) {
         if (dom.children[i].name === "name") {
           name = dom.children[i].children[0].text;
@@ -62,6 +76,14 @@ GenIcon.prototype.generate = function(clbk) {
         if (targets.length === 0) {
           targets = [].concat(platforms);
         }
+
+        if (!self.silent) {
+          console.log("Generate cordova icons with");
+          console.log("project: " + self.project);
+          console.log("icon   : " + src);
+          console.log("target : " + targets);
+        }
+
 
         (function _generate(err){
           if (err) {
@@ -97,7 +119,7 @@ GenIcon.prototype.generate = function(clbk) {
                   _generate(err);
                 });
               } else {
-                if (self.silent) {
+                if (!self.silent) {
                   console.log("Ignore " + target);
                 }
                 _generate();
