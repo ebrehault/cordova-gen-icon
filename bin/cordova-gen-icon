@@ -20,7 +20,7 @@ program
 // generate icons
 genicon.generate({
   project: program.project,
-  icon: program.source,
+  icon: program.icon,
   silent: program.silent,
   verbose: program.verbose,
   android: program.android,
