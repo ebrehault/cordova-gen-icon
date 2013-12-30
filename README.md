@@ -44,7 +44,7 @@ Options
 * -f, --firefoxos       generate FirefoxOS icons
 * -z, --amazonfire      generate Amazon Fire OS icons
 * -p, --project [path]  Cordova(PhoneGap) project path
-* -s, --source [path]   original icon file path
+* -c, --icon [path]     original icon file path
 
 Example
 -----------------------------------------------------------------------------

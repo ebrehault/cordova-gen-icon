@@ -135,14 +135,14 @@ describe("cordova-gen-icon", function() {
         done(error);
       });
     });
-    it("-s", function(done) {
-      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -i -a -f -z -s tests/icon.png",
+    it("-c", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -i -a -f -z -c tests/icon.png",
       function(error, stdout, stderr) {
         done(error);
       });
     });
-    it("--source", function(done) {
-      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -i -a -f -z --source tests/icon.png",
+    it("--icon", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -i -a -f -z --icon tests/icon.png",
       function(error, stdout, stderr) {
         done(error);
       });
