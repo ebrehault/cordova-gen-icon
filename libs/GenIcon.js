@@ -96,6 +96,11 @@ GenIcon.prototype.generate = function(clbk) {
                 self.generateFirefoxOSIcon(name, src, platformDir, function(err) {
                   _generate(err);
                 });
+              } else {
+                if (self.silent) {
+                  console.log("Ignore " + target);
+                }
+                _generate();
               }
             } else {
               console.log("platform \"" + target + "\" does not exist.");
