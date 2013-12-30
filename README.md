@@ -39,6 +39,7 @@ Options
 * -h, --help            output usage information
 * -V, --version         output the version number
 * -v, --verbose         verbose actions
+* -s, --silent          silent actions
 * -a, --android         generate Android icons
 * -i, --ios             generate iOS icons
 * -f, --firefoxos       generate FirefoxOS icons
