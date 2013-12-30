@@ -147,6 +147,30 @@ describe("cordova-gen-icon", function() {
         done(error);
       });
     });
+    it("-s", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -s",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--silent", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test --silent",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("-v", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test -v",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
+    it("--verbose", function(done) {
+      child_process.exec("bin/cordova-gen-icon --project tests/cordova-test --verbose",
+      function(error, stdout, stderr) {
+        done(error);
+      });
+    });
   });
   describe("error code", function() {
     it("-?", function(done) {
@@ -170,6 +194,15 @@ describe("cordova-gen-icon", function() {
     it("not project, -p", function(done) {
       child_process.exec("bin/cordova-gen-icon -p tests",
       function(error, stdout, stderr) {
+        if (error === null) {
+          done("no error");
+        }
+        assert.equal(error.code, 1);
+        done();
+      });
+    });
+    it("not project, -s", function(done) {
+      child_process.exec("bin/cordova-gen-icon -s", function(error, stdout, stderr) {
         if (error === null) {
           done("no error");
         }
