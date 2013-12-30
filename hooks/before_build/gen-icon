@@ -10,8 +10,8 @@ if (cli === "cordova") {
   genicon.generate({
     project: process.env["PWD"],
     android: (target === "android") ? true : false,
-    ios: (target === "ios") ? true : false
-    firefoxos: (target === "firefoxos") ? true : false
+    ios: (target === "ios") ? true : false,
+    firefoxos: (target === "firefoxos") ? true : false,
     amazonfireos: (target === "amazonfireos") ? true : false
   }, function(err) {
     if (err) {
