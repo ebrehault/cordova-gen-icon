@@ -2,6 +2,18 @@
 var genicon = require("../index.js");
 var assert = require("assert");
 
+describe("format", function() {
+  var child_process = require("child_process");
+  it("jshint", function(done) {
+    child_process.exec(
+        "./node_modules/jshint/bin/jshint index.js bin/* libs/*.js tests/*.js",
+        function(error, stdout, stderr) {
+          done(error);
+        }
+    );
+  });
+});
+
 describe("bin", function() {
   it("cordova-gen-icon exists", function(done) {
     var fs = require("fs");

@@ -1,7 +1,18 @@
 
+/**
+ * @file
+ * Cordova Generate Icon.
+ *
+ * @author Naoki Takimura <n.takimura@gmail.com>
+ */
 var util = require("util"),
     genicon = require("./GenIcon");
 
+/**
+ * @constructor
+ * @summary Cordova Generate Icon.
+ * @param options options
+ */
 function CordovaGenIcon(options) {
   this.verbose = (options && options.verbose !== undefined) ?
       options.verbose : false;
@@ -34,6 +45,13 @@ function CordovaGenIcon(options) {
 util.inherits(CordovaGenIcon, genicon.GenIcon);
 exports.CordovaGenIcon = CordovaGenIcon;
 
+/**
+ * @summary Generate Amazon Fire OS Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ */
 CordovaGenIcon.prototype.generateAmazonFireOSIcon = function(name, src, platforms, clbk) {
   console.log("generate Amazon Fire OS icons");
   var dests = [{
@@ -56,6 +74,15 @@ CordovaGenIcon.prototype.generateAmazonFireOSIcon = function(name, src, platform
   this.resize(src, dests, clbk);
 };
 
+/**
+ * generateFirefoxOSIcon generates the Firefox OS icon image files.
+ * Thats images are trimed as circle automatically.
+ * @summary Generate Firefox OS Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ */
 CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, clbk) {
   console.log("generate Firefox OS icons");
 
@@ -91,6 +118,15 @@ CordovaGenIcon.prototype.generateFirefoxOSIcon = function(name, src, platforms, 
   });
 };
 
+/**
+ * generateIOSIcon generates the iOS icon image files.
+ * Thats images have round corner automatically.
+ * @summary Generate iOS Icon.
+ * @param {String} name project name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ */
 CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) {
   console.log("generate iOS icons");
   if (this.verbose) {
@@ -150,6 +186,13 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
   this.resize(src, dests, { roundCorner: true }, clbk);
 };
 
+/**
+ * @summary Generate Android Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ */
 CordovaGenIcon.prototype.generateAndroidIcon = function(src, platforms, clbk) {
   console.log("generate android icons");
   var dests = [{

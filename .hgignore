@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 .swp
+out
 tests/cordova-test/platforms
 tests/cordova-test/plugins
 

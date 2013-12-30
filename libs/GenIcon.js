@@ -1,13 +1,30 @@
 
+/**
+ * @file
+ * Generate Icon.
+ *
+ * @author Naoki Takimura <n.takimura@gmail.com>
+ */
+
 var path = require("path"),
     fs = require("fs"),
     domjs = require("dom-js"),
     imagemagick = require("imagemagick");
 
+/**
+ * Generate icon super class.
+ * @constructor
+ * @private
+ */
 function GenIcon() {
 }
 exports.GenIcon = GenIcon;
 
+/**
+ * Generate the icon files.
+ *
+ * @param {Function} clbk callback function.
+ */
 GenIcon.prototype.generate = function(clbk) {
   var self = this,
       src,
@@ -89,6 +106,19 @@ GenIcon.prototype.generate = function(clbk) {
 
 };
 
+/**
+ * Convert an image file.
+ *
+ * It converts the source image file to the dest image file.
+ * The dest file image size is (width, height).
+ *
+ * @param {String} src source image file path.
+ * @param {String} dest destination image file path.
+ * @param {Number} width destination image width.
+ * @param {Number} height destination image height.
+ * @param {Object} options opitons.
+ * @param {Function} clbk callback function.
+ */
 GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
   if (this.verbose) {
     console.log("resize");
@@ -149,6 +179,16 @@ GenIcon.prototype.convert = function(src, dest, width, height, options, clbk) {
 
 };
 
+/**
+ * Resize to the image files.
+ *
+ * It resize the source image file to the destination image files.
+ *
+ * @param {String} src source image file path.
+ * @param {String} dests destination image file set.
+ * @param {Object} options opitons.
+ * @param {Function} clbk callback function.
+ */
 GenIcon.prototype.resize = function(src, dests, options, clbk) {
   var self = this,
       targets = [].concat(dests);
@@ -173,6 +213,11 @@ GenIcon.prototype.resize = function(src, dests, options, clbk) {
   })();
 };
 
+/**
+ * Make the directory recursively.
+ * @param {String} dir directory path.
+ * @param {Function} clbk callback function.
+ */
 GenIcon.prototype.mkdir = function(dir, clbk) {
   var self = this;
   fs.exists(path.dirname(dir), function(exists) {

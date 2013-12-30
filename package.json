@@ -7,9 +7,8 @@
     "cordova-gen-icon": "bin/cordova-gen-icon"
   },
   "scripts": {
-    "jshint": "./node_modules/jshint/bin/jshint index.js bin/* libs/*.js tests/*.js",
-    "mocha" : "./node_modules/mocha/bin/mocha -R spec tests/runner.js",
-    "test": "node package.json; npm run jshint; npm run mocha"
+    "jsdoc" : "jsdoc -d jsdoc index.js libs/*.js",
+    "test": "mocha -R spec tests/runner.js"
   },
   "directories": [
     "bin",
@@ -22,8 +21,6 @@
     "dom-js": "*"
   },
   "devDependencies": {
-    "jshint": "*",
-    "mocha": "*"
   },
   "repository": {
     "type": "mercurial",
