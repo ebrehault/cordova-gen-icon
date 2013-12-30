@@ -8,6 +8,9 @@ describe("format", function() {
     child_process.exec(
         "jshint index.js bin/* libs/*.js tests/*.js",
         function(error, stdout, stderr) {
+          if (stdout) {
+            console.log(stdout);
+          }
           if (stderr) {
             console.error(stderr);
           }
