@@ -4,4 +4,7 @@ node_modules
 jsdoc
 tests/cordova-test/platforms
 tests/cordova-test/plugins
+tests/phonegap-test/platforms
+tests/phonegap-test/plugins
+
 
