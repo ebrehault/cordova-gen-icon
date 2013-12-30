@@ -6,8 +6,11 @@ describe("format", function() {
   var child_process = require("child_process");
   it("jshint", function(done) {
     child_process.exec(
-        "./node_modules/jshint/bin/jshint index.js bin/* libs/*.js tests/*.js",
+        "jshint index.js bin/* libs/*.js tests/*.js",
         function(error, stdout, stderr) {
+          if (stderr) {
+            console.error(stderr);
+          }
           done(error);
         }
     );
