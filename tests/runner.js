@@ -52,6 +52,9 @@ describe("exports", function() {
 
 describe("cordova-gen-icon", function() {
   var child_process = require("child_process");
+
+  this.timeout(5000);
+
   describe("no error", function() {
     it("-h", function(done) {
       child_process.exec("bin/cordova-gen-icon -h", function(error, stdout, stderr) {
