@@ -21,6 +21,7 @@
     "dom-js": "*"
   },
   "devDependencies": {
+    "mocha": "*"
   },
   "repository": {
     "type": "mercurial",
