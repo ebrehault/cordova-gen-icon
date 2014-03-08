@@ -11,7 +11,8 @@ if (cli === "cordova") {
     android: (target === "android") ? true : false,
     ios: (target === "ios") ? true : false,
     firefoxos: (target === "firefoxos") ? true : false,
-    amazonfireos: (target === "amazon-fireos") ? true : false
+    amazonfireos: (target === "amazon-fireos") ? true : false,
+    windowsphone8: (target === "wp8") ? true : false
   }, function(err) {
     if (err) {
       throw new Error(err);

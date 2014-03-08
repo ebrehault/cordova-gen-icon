@@ -141,6 +141,10 @@ GenIcon.prototype.generate = function(clbk) {
             self.generateFirefoxOSIcon(self.name, self.icon, platformDir, function(err) {
               _generate(err);
             });
+          } else if (target === "wp8") {
+            self.generateWindowsPhone8Icon(self.name, self.icon, platformDir, function(err) {
+              _generate(err);
+            });
           } else {
             if (!self.silent) {
               console.log("Ignore " + target);
@@ -357,6 +361,18 @@ GenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) {
  * @abstract
  */
 GenIcon.prototype.generateAndroidIcon = function(name, src, platforms, clbk) {
+  clbk("this method must be implemented by child class.");
+};
+
+/**
+ * @summary Generate Windows Phone 8 Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ * @abstract
+ */
+GenIcon.prototype.generateWindowsPhone8Icon = function(name, src, platforms, clbk) {
   clbk("this method must be implemented by child class.");
 };
 

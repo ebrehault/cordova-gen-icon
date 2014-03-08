@@ -37,6 +37,9 @@ function CordovaGenIcon(options) {
   if (options && options.amazonfireos === true) {
     this.targets.push("amazon-fireos");
   }
+  if (options && options.windowsphone8 === true) {
+    this.targets.push("wp8");
+  }
 }
 util.inherits(CordovaGenIcon, genicon.GenIcon);
 exports.CordovaGenIcon = CordovaGenIcon;
@@ -207,6 +210,22 @@ CordovaGenIcon.prototype.generateAndroidIcon = function(name, src, platforms, cl
   }, {
       dest: platforms + "/android/res/drawable-xhdpi/icon.png",
       width: 96, height: 96
+  }];
+
+  this.resize(src, dests, clbk);
+};
+
+/**
+ * @summary Generate Windows Phone 8 Icon.
+ * @param {String} name projectn name.
+ * @param {String} src source image path.
+ * @param {String} platforms platforms directory path.
+ * @param {Function} clbk callback function.
+ */
+CordovaGenIcon.prototype.generateWindowsPhone8Icon = function(name, src, platforms, clbk) {
+  var dests = [{
+      dest: platforms + "/wp8/ApplicationIcon.png",
+      width: 62, height: 62
   }];
 
   this.resize(src, dests, clbk);

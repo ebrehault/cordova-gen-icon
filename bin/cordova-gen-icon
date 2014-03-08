@@ -13,6 +13,7 @@ program
   .option("-i, --ios", "generate iOS icons")
   .option("-f, --firefoxos", "generate Firefox OS icons")
   .option("-z, --amazonfireos", "generate Amazon Fire OS icons")
+  .option("-8, --windowsphone8", "generate Windows Phone 8 icons")
   .option("-p, --project [path]", "Cordova(PhoneGap) project path")
   .option("-c, --icon [path]", "original icon file path")
   .parse(process.argv);
@@ -26,7 +27,8 @@ genicon.generate({
   android: program.android,
   amazonfireos: program.amazonfireos,
   firefoxos: program.firefoxos,
-  ios: program.ios
+  ios: program.ios,
+  windowsphone8: program.windowsphone8
 }, function(err) {
   if (err) {
     console.log("\033[31mFail\033[m generate icon set: " + err);

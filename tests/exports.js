@@ -118,6 +118,17 @@ describe("CordovaGenerateIcon", function() {
         done(err);
       });
     });
+    
+ describe("windowsphone8", function() {
+    it("generate standard", function(done) {
+      genicon.generate({
+        project: "tests/cordova-test",
+        windowsphone8: true
+      }, function(err) {
+        done(err);
+      });
+    });
+
     it("generate standard", function(done) {
       genicon.generate({
         project: "tests/cordova-test",

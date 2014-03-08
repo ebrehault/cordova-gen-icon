@@ -96,6 +96,13 @@ describe("cordova-gen-icon", function() {
         done(error);
       });
     });
+    it("--windowsphone8", function(done) {
+      child_process.exec("../../bin/cordova-gen-icon --windowsphone8", {
+        cwd: "tests/cordova-test"
+      }, function(error, stdout, stderr) {
+        done(error);
+      });
+    });
     it("-p", function(done) {
       child_process.exec("bin/cordova-gen-icon -p tests/cordova-test",
       function(error, stdout, stderr) {
