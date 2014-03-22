@@ -11,6 +11,7 @@ Supported Platforms
 * Firefox OS
     * the Firefox OS icon images are trimmed as circle.
 * Amazon Fire OS
+* Windows Phone 8
 
 Install
 -----------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Options
 * -i, --ios             generate iOS icons
 * -f, --firefoxos       generate FirefoxOS icons
 * -z, --amazonfire      generate Amazon Fire OS icons
+* -8, --windowsphone8   generate Windows Phone 8 icons
 * -p, --project [path]  Cordova(PhoneGap) project path
 * -c, --icon [path]     original icon file path
 
