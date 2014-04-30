@@ -1,4 +1,3 @@
-
 /**
  * @file
  * Cordova Generate Icon.
@@ -200,7 +199,7 @@ CordovaGenIcon.prototype.generateAndroidIcon = function(name, src, platforms, cl
       width: 96, height: 96
   }, {
       dest: platforms + "/android/res/drawable-ldpi/icon.png",
-      width: 48, height: 48
+      width: 36, height: 36
   }, {
       dest: platforms + "/android/res/drawable-mdpi/icon.png",
       width: 48, height: 48
