@@ -1,0 +1,40 @@
+{
+  "name": "cordova-gen-icon",
+  "version": "0.4.4",
+  "description": "Apache Cordova Icon Generator",
+  "main": "index.js",
+  "bin": {
+    "cordova-gen-icon": "bin/cordova-gen-icon"
+  },
+  "scripts": {
+    "jsdoc" : "jsdoc -d jsdoc index.js libs/*.js",
+    "test": "mocha -R spec tests/runner.js"
+  },
+  "directories": [
+    "bin",
+    "libs",
+    "hooks"
+  ],
+  "dependencies": {
+    "commander": "*",
+    "imagemagick": "*",
+    "dom-js": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "repository": {
+    "type": "mercurial",
+    "url": "ssh://hg@bitbucket.org/ntakimura/cordova-gen-icon"
+  },
+  "keywords": [
+    "cordova",
+    "hooks",
+    "icon"
+  ],
+  "author": "Naoki Takimura",
+  "license": {
+    "type": "WTFPL",
+    "url": "http://www.wtfpl.net/about/"
+  }
+}

@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+.swp
+jsdoc
+tests/cordova-test/platforms
+tests/cordova-test/plugins
+tests/phonegap-test/platforms
+tests/phonegap-test/plugins
+
+

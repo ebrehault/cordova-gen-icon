@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+var program = require("commander"),
+    genicon = require("../index.js"),
+    pkgjson = require("../package.json");
+
+// commander options
+program
+  .version(pkgjson.version)
+  .option("-v, --verbose", "verbose actions")
+  .option("-s, --silent", "silent actions")
+  .option("-a, --android", "generate android icons")
+  .option("-i, --ios", "generate iOS icons")
+  .option("-f, --firefoxos", "generate Firefox OS icons")
+  .option("-z, --amazonfireos", "generate Amazon Fire OS icons")
+  .option("-8, --windowsphone8", "generate Windows Phone 8 icons")
+  .option("-p, --project [path]", "Cordova(PhoneGap) project path")
+  .option("-c, --icon [path]", "original icon file path")
+  .parse(process.argv);
+
+// generate icons
+genicon.generate({
+  project: program.project,
+  icon: program.icon,
+  silent: program.silent,
+  verbose: program.verbose,
+  android: program.android,
+  amazonfireos: program.amazonfireos,
+  firefoxos: program.firefoxos,
+  ios: program.ios,
+  windowsphone8: program.windowsphone8
+}, function(err) {
+  if (err) {
+    console.log("\033[31mFail\033[m generate icon set: " + err);
+    process.exit(1);
+  }
+});
+
+
+// vim: ts=2 sw=2 ft=javascript
+

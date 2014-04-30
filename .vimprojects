@@ -1,0 +1,21 @@
+CordovaImageIcon=/Users/ntakimura/src/tadoku/cordova-icons {
+ LICENSE.txt
+ README.md
+ index.js
+ package.json
+ bin=bin {
+  cordova-gen-icon
+ }
+ before_build=hooks/before_build {
+  gen-icon
+ }
+ tests=tests {
+  runner.js
+ }
+ libs=libs {
+  CordovaGenIcon.js
+  GenIcon.js
+  PhoneGapGenIcon.js
+ }
+}
+
