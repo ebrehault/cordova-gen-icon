@@ -1,4 +1,3 @@
-
 /**
  * @file
  * Generate Icon.
@@ -29,52 +28,59 @@ exports.GenIcon = GenIcon;
  * @param {Function} clbk callback function.
  */
 GenIcon.prototype.prepare = function(clbk) {
-  var self = this;
+  var self = this,
+      configxml = "/config.xml";
 
-  fs.readFile(self.project + "/www/config.xml", function(err, data) {
-    if (err) {
-      return clbk(err);
+  fs.exists(self.project + configxml, function(exists){
+    if(!exists){
+      configxml = "/www" + configxml;
     }
-    (new domjs.DomJS()).parse(data.toString(), function(err, dom) {
+
+    fs.readFile(self.project + configxml, function(err, data) {
       if (err) {
         return clbk(err);
       }
+      (new domjs.DomJS()).parse(data.toString(), function(err, dom) {
+        if (err) {
+          return clbk(err);
+        }
 
-      var i;
+        var i;
 
-      if (!self.icon) {
+        if (!self.icon) {
+          for (i in dom.children) {
+            if (dom.children[i].name === "icon" &&
+                dom.children[i].attributes["gap:platform"] === undefined) {
+              self.icon = self.project + "/www/" + dom.children[i].attributes.src;
+              break;
+            }
+          }
+          if (self.icon === undefined) {
+            self.icon = self.project + "/www/img/logo.png";
+          }
+        }
+
         for (i in dom.children) {
-          if (dom.children[i].name === "icon" &&
-              dom.children[i].attributes["gap:platform"] === undefined) {
-            self.icon = self.project + "/www/" + dom.children[i].attributes.src;
-            break;
+          if (dom.children[i].name === "name") {
+            self.name = dom.children[i].children[0].text;
           }
         }
-        if (self.icon === undefined) {
-          self.icon = self.project + "/www/img/logo.png";
+        if (self.name === undefined) {
+          return clbk("config.xml does not have \"name\" tag");
         }
-      }
 
-      for (i in dom.children) {
-        if (dom.children[i].name === "name") {
-          self.name = dom.children[i].children[0].text;
-        }
-      }
-      if (self.name === undefined) {
-        return clbk("config.xml does not have \"name\" tag");
-      }
-
-      if (self.targets !== undefined && self.targets.length > 0) {
-        clbk();
-      } else {
-        fs.readdir(self.project + "/platforms", function(err, platforms) {
-          if (err) {
-            return clbk(err);
-          }
-          self.targets = [].concat(platforms);
+        if (self.targets !== undefined && self.targets.length > 0) {
           clbk();
-        });
-      }
+        } else {
+          fs.readdir(self.project + "/platforms", function(err, platforms) {
+            if (err) {
+              return clbk(err);
+            }
+            self.targets = [].concat(platforms);
+            clbk();
+          });
+        }
+      });
     });
   });
 };
