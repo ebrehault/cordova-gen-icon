@@ -158,6 +158,9 @@ CordovaGenIcon.prototype.generateIOSIcon = function(name, src, platforms, clbk) 
       dest: platforms + "/ios/" + name + "/Resources/icons/icon@2x.png",
       width: 114, height: 114
   }, {
+      dest: platforms + "/ios/" + name + "/Resources/icons/icon-60@3x.png",
+      width: 180, height: 180
+  }, {
       dest: platforms + "/ios/" + name + "/Resources/icons/icon-40@2x.png",
       width: 80, height: 80
   }, {
