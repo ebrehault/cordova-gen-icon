@@ -22,7 +22,7 @@ exports.GenIcon = GenIcon;
 /**
  * Prepare generating icon files.
  *
- * It reads www/config.xml and walk platforms/ direcotry.
+ * It reads ./www/config.xml or ./config.xml and walk platforms/ direcotry.
  * After that, it sets class members as generating property.
  *
  * @param {Function} clbk callback function.
@@ -31,8 +31,8 @@ GenIcon.prototype.prepare = function(clbk) {
   var self = this,
       configxml = "/config.xml";
 
-  fs.exists(self.project + configxml, function(exists){
-    if(!exists){
+  fs.exists(self.project + "/www" + configxml, function(exists){
+    if(exists){
       configxml = "/www" + configxml;
     }
 
